@@ -9,6 +9,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   arrowLeft?: boolean;
   arrowRight?: boolean;
   children: ReactNode;
+  className?: string;
 };
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   arrowLeft,
   arrowRight,
   children,
+  className,
   ...props
 }: ButtonProps) => {
   const variantClasses = {
@@ -31,7 +33,7 @@ const Button = ({
 
   return (
     <button
-      className={`font-medium text-gray-50 flex items-center gap-2 rounded-lg px-8 py-4 hover:opacity-90 cursor-pointer ${variantClasses[variant]}`}
+      className={`font-medium text-gray-50 flex items-center gap-2 rounded-lg px-8 py-4 hover:opacity-90 cursor-pointer ${variantClasses[variant]} ${className}`}
       {...props}
     >
       {arrowLeft && <ArrowLeftIcon className={arrowColorClasses[variant]} />}

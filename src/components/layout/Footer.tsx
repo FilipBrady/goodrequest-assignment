@@ -5,8 +5,8 @@ import FacebookIcon from '../icons/FacebookIcon';
 
 export default function Footer() {
   return (
-    <footer className='border-t border-gray-300 bg-white'>
-      <div className='mx-auto flex max-w-7xl items-center justify-between pt-6'>
+    <footer className='max-w-7xl mx-auto border-t border-gray-300 bg-white'>
+      <div className='flex flex-wrap items-center justify-center sm:justify-between gap-5 pt-6 pb-14'>
         <Link href='/'>
           <Image src='logo.svg' alt='GoodBoy logo' width={124} height={32} />
         </Link>
