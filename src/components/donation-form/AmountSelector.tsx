@@ -1,6 +1,7 @@
 type AmountSelectorProps = {
   value: number;
   onChange: (value: number) => void;
+  error?: string;
 };
 
 const amountOptions = [5, 10, 20, 30, 50, 100];
@@ -8,6 +9,7 @@ const amountOptions = [5, 10, 20, 30, 50, 100];
 export default function AmountSelector({
   value,
   onChange,
+  error,
 }: AmountSelectorProps) {
   const handleInputChange = (inputValue: string) => {
     const parsedValue = parseInt(inputValue);
@@ -33,11 +35,9 @@ export default function AmountSelector({
               value={value}
               onChange={e => handleInputChange(e.target.value)}
               className='w-24 border-0 bg-transparent text-center text-6xl font-light text-gray-900 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
-              
             />
             <span className='text-3xl font-light text-gray-700'>€</span>
           </div>
-
         </div>
       </div>
 
@@ -61,6 +61,7 @@ export default function AmountSelector({
           );
         })}
       </div>
+      {error && <p className='text-sm text-red-500 text-center'>{error}</p>}
     </div>
   );
 }

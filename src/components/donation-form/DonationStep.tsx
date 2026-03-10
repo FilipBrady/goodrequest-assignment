@@ -4,11 +4,16 @@ import Select from './Select';
 
 type DonationStepProps = {
   donationTarget: 'shelter' | 'foundation';
-  shelterId: string;
+  shelterId?: string;
   amount: number;
   onDonationTargetChange: (value: 'shelter' | 'foundation') => void;
   onShelterIdChange: (value: string) => void;
   onAmountChange: (value: number) => void;
+  shelterError?: string;
+  amountError?: string;
+  shelterOptions: Array<{ label: string; value: string }>;
+  shelterLoading?: boolean;
+  shelterLoadError?: string;
 };
 
 export default function DonationStep({
@@ -18,12 +23,12 @@ export default function DonationStep({
   onDonationTargetChange,
   onShelterIdChange,
   onAmountChange,
+  shelterError,
+  amountError,
+  shelterOptions,
+  shelterLoading,
+  shelterLoadError,
 }: DonationStepProps) {
-  const shelterOptions = [
-    { label: 'Útulok Žilina', value: '1' },
-    { label: 'Útulok Martin', value: '2' },
-    { label: 'Útulok Trenčín', value: '3' },
-  ];
 
   const handleDonationTargetChange = (value: 'shelter' | 'foundation') => {
     onDonationTargetChange(value);
@@ -56,10 +61,15 @@ export default function DonationStep({
             onChange={e => onShelterIdChange(e.target.value)}
             options={shelterOptions}
             placeholder='Vyberte útulok zo zoznamu'
+            error={shelterError}
           />
         </div>
       </div>
-      <AmountSelector value={amount} onChange={onAmountChange} />
+      <AmountSelector
+        value={amount}
+        onChange={onAmountChange}
+        error={amountError}
+      />
     </div>
   );
 }

@@ -7,13 +7,15 @@ export type DonationStats = {
   contributors: number;
   contribution: number;
 };
-
-export type CreateDonationPayload = {
+export type DonationContributor = {
   firstName?: string;
   lastName: string;
   email: string;
   phone: string;
-  shelterId?: string;
+};
+export type CreateDonationPayload = {
+  contributors: DonationContributor[];
+  shelterID?: string;
   value: number;
 };
 

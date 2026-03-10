@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import CheckIcon from '../icons/CheckIcon';
 
 type FormProgressProps = {
   currentStep: number;
@@ -12,22 +13,26 @@ const steps = [
 
 export default function FormProgress({ currentStep }: FormProgressProps) {
   return (
-    <div className="grid grid-cols-[auto_1fr_auto_1fr_auto] items-center gap-4">
+    <div className='grid grid-cols-[auto_1fr_auto_1fr_auto] items-center gap-4'>
       {steps.map((step, index) => {
-        const position = index + 1
+        const position = index + 1;
+        const isCompleted = position < currentStep;
+        const isActive = position === currentStep;
         const isActiveOrCompleted = position <= currentStep;
 
         return (
           <React.Fragment key={position}>
-            <div className="flex items-center gap-3">
+            <div className='flex items-center gap-3'>
               <div
                 className={`flex h-8 w-8 items-center justify-center rounded-full border text-sm font-medium ${
-                  isActiveOrCompleted
-                    ? 'border-primary bg-primary text-white'
-                    : 'border-gray-300 text-gray-300'
+                  isCompleted
+                    ? 'border-gray-300 bg-gray-100 text-primary'
+                    : isActive
+                      ? 'border-primary bg-primary text-white'
+                      : 'border-gray-300 bg-white text-gray-300'
                 }`}
               >
-                {position}
+                {isCompleted ? <CheckIcon className='h-4 w-4' /> : position}
               </div>
 
               <p

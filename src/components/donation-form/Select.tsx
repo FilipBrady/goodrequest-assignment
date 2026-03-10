@@ -36,11 +36,7 @@ export default function Select({
           aria-invalid={!!error}
           {...props}
         >
-          {placeholder && (
-            <option value='' disabled>
-              {placeholder}
-            </option>
-          )}
+          {placeholder && <option value=''>{placeholder}</option>}
 
           {options.map(option => (
             <option key={option.value} value={option.value}>

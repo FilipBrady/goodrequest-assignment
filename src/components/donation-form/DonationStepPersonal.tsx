@@ -4,7 +4,7 @@ import Input from '@/components/ui/Input';
 import PhonePrefixSelect from './PhonePrefixSelect';
 
 type DonationStepPersonalProps = {
-  firstName: string;
+  firstName?: string;
   lastName: string;
   email: string;
   phonePrefix: '+421' | '+420';
@@ -14,8 +14,11 @@ type DonationStepPersonalProps = {
   onEmailChange: (value: string) => void;
   onPhonePrefixChange: (value: '+421' | '+420') => void;
   onPhoneChange: (value: string) => void;
+  firstNameError?: string;
+  lastNameError?: string;
+  emailError?: string;
+  phoneError?: string;
 };
-
 export default function DonationStepPersonal({
   firstName,
   lastName,
@@ -27,6 +30,10 @@ export default function DonationStepPersonal({
   onEmailChange,
   onPhonePrefixChange,
   onPhoneChange,
+  firstNameError,
+  lastNameError,
+  emailError,
+  phoneError,
 }: DonationStepPersonalProps) {
   return (
     <div className='flex flex-col gap-8'>
@@ -46,6 +53,7 @@ export default function DonationStepPersonal({
             placeholder='Zadajte Vaše meno'
             value={firstName}
             onChange={e => onFirstNameChange(e.target.value)}
+            error={firstNameError}
           />
 
           <Input
@@ -54,6 +62,7 @@ export default function DonationStepPersonal({
             placeholder='Zadajte Vaše priezvisko'
             value={lastName}
             onChange={e => onLastNameChange(e.target.value)}
+            error={lastNameError}
           />
         </div>
 
@@ -64,6 +73,7 @@ export default function DonationStepPersonal({
           placeholder='Zadajte Váš e-mail'
           value={email}
           onChange={e => onEmailChange(e.target.value)}
+          error={emailError}
         />
 
         <div className='flex flex-col gap-2'>
@@ -84,6 +94,7 @@ export default function DonationStepPersonal({
               onChange={e => onPhoneChange(e.target.value)}
               placeholder='123 321 123'
               className='bg-transparent outline-none w-full'
+              error={phoneError}
             />
           </div>
         </div>

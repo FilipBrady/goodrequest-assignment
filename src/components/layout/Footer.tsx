@@ -3,12 +3,18 @@ import Link from 'next/link';
 import InstagramIcon from '../icons/InstagramIcon';
 import FacebookIcon from '../icons/FacebookIcon';
 
-export default function Footer() {
+type FooterProps = {
+  className?: string;
+};
+
+export default function Footer({ className }: FooterProps) {
   return (
-    <footer className='max-w-7xl mx-auto border-t border-gray-300 bg-white'>
+    <footer
+      className={`max-w-7xl mx-auto border-t border-gray-300 bg-white ${className}`}
+    >
       <div className='flex flex-wrap items-center justify-center sm:justify-between gap-5 pt-6 pb-14'>
         <Link href='/'>
-          <Image src='logo.svg' alt='GoodBoy logo' width={124} height={32} />
+          <Image src='/logo.svg' alt='GoodBoy logo' width={124} height={32} />
         </Link>
         <nav className='flex items-center gap-4 text-sm text-gray-700'>
           <Link
