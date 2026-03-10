@@ -32,7 +32,7 @@ export default function Select({
       <div className='relative'>
         <select
           id={id}
-          className={`w-full appearance-none rounded-2xl border border-transparent bg-gray-100 px-6 py-5 pr-14 text-lg text-gray-900 placeholder-gray-400 outline-none transition focus:border-primary ${error ? 'border-red-500' : ''} ${className}`}
+          className={`w-full appearance-none rounded-2xl border border-transparent bg-gray-100 p-4 pr-14 text-lg text-gray-900 placeholder-gray-400 outline-none transition focus:rounded-b-none ${error ? 'border-red-500' : ''} ${className}`}
           aria-invalid={!!error}
           {...props}
         >

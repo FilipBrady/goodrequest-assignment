@@ -5,8 +5,12 @@ import RadioCard from './RadioCard';
 import Button from '../ui/Button';
 import Select from './Select';
 import AmountSelector from './AmountSelector';
+import DonationStep from './DonationStep';
+import DonationStepPersonal from './DonationStepPersonal';
 
 export default function DonationForm() {
+  const [step, setStep] = useState(1);
+
   const [donationTarget, setDonationTarget] = useState<
     'shelter' | 'foundation'
   >('foundation');
@@ -24,40 +28,53 @@ export default function DonationForm() {
       setShelterId('');
     }
   };
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phonePrefix, setPhonePrefix] = useState<'+421' | '+420'>('+421');
+  const [phone, setPhone] = useState('');
   return (
     <div className='flex flex-col gap-10'>
-      <FormProgress currentStep={1} />
-      <h1 className='text-gray-900 text-5xl font-bold'>
-        Vyberte si možnosť, ako chcete pomôcť
-      </h1>
-      <RadioCard value={donationTarget} onChange={handleDonationTargetChange} />
-      <div className='flex flex-col gap-4 mt-10'>
-        <h2 className='font-bold text-gray-900'>O projekte</h2>
-
-        <div className='flex flex-col gap-2'>
-          <label htmlFor='shelterId' className='text-sm text-gray-900'>
-            Útulok
-            <span className='ml-1 text-gray-400'>
-              {donationTarget === 'foundation' ? '(Nepovinné)' : '(Povinné)'}
-            </span>
-          </label>
-
-          <Select
-            id='shelterId'
-            value={shelterId}
-            onChange={e => setShelterId(e.target.value)}
-            options={shelterOptions}
-            placeholder='Vyberte útulok zo zoznamu'
-          />
-        </div>
-      </div>
-      <AmountSelector value={amount} onChange={setAmount} />
+      <FormProgress currentStep={step} />
+      {step === 1 && (
+        <DonationStep
+          donationTarget={donationTarget}
+          shelterId={shelterId}
+          amount={amount}
+          onDonationTargetChange={setDonationTarget}
+          onShelterIdChange={setShelterId}
+          onAmountChange={setAmount}
+        />
+      )}
+      {step === 2 && (
+        <DonationStepPersonal
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          phonePrefix={phonePrefix}
+          phone={phone}
+          onFirstNameChange={setFirstName}
+          onLastNameChange={setLastName}
+          onEmailChange={setEmail}
+          onPhonePrefixChange={setPhonePrefix}
+          onPhoneChange={setPhone}
+        />
+      )}
       <div className='flex flex-row justify-between items-center gap-3'>
-        <Button arrowLeft={true} variant='secondary'>
+        <Button
+          arrowLeft={true}
+          variant='secondary'
+          onClick={() => setStep(step !== 1 ? step - 1 : step)}
+        >
           Späť
         </Button>
-        <Button arrowRight={true} variant='primary'>
-          Pokračovať{' '}
+        <Button
+          arrowRight={true}
+          variant='primary'
+          onClick={() => setStep(step !== 3 ? step + 1 : step)}
+        >
+          Pokračovať
         </Button>
       </div>
     </div>

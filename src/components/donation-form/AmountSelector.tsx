@@ -32,7 +32,7 @@ export default function AmountSelector({
               min='0'
               value={value}
               onChange={e => handleInputChange(e.target.value)}
-              className='w-24 border-0 bg-transparent text-center text-6xl font-light text-gray-400 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+              className='w-24 border-0 bg-transparent text-center text-6xl font-light text-gray-900 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
               
             />
             <span className='text-3xl font-light text-gray-700'>€</span>

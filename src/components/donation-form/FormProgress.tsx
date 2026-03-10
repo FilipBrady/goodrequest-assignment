@@ -14,10 +14,11 @@ export default function FormProgress({ currentStep }: FormProgressProps) {
   return (
     <div className="grid grid-cols-[auto_1fr_auto_1fr_auto] items-center gap-4">
       {steps.map((step, index) => {
-        const isActiveOrCompleted = step.id <= currentStep;
+        const position = index + 1
+        const isActiveOrCompleted = position <= currentStep;
 
         return (
-          <React.Fragment key={step.id}>
+          <React.Fragment key={position}>
             <div className="flex items-center gap-3">
               <div
                 className={`flex h-8 w-8 items-center justify-center rounded-full border text-sm font-medium ${
@@ -26,7 +27,7 @@ export default function FormProgress({ currentStep }: FormProgressProps) {
                     : 'border-gray-300 text-gray-300'
                 }`}
               >
-                {step.id}
+                {position}
               </div>
 
               <p
@@ -41,7 +42,7 @@ export default function FormProgress({ currentStep }: FormProgressProps) {
             {index < steps.length - 1 && (
               <div
                 className={`h-px w-full ${
-                  step.id < currentStep ? 'bg-primary' : 'bg-gray-300'
+                  position < currentStep ? 'bg-primary' : 'bg-gray-300'
                 }`}
               />
             )}
