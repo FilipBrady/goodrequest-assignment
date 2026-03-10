@@ -56,6 +56,8 @@ export default function DonationForm() {
   const phonePrefix = watch('phonePrefix');
   const phone = watch('phone');
   const consent = watch('consent');
+  const selectedShelterName =
+    shelters.find(shelter => shelter.id === shelterId)?.name ?? '';
 
   const handleNextStep = async () => {
     if (step === 1) {
@@ -170,15 +172,7 @@ export default function DonationForm() {
       {step === 3 && (
         <DonationStepSummary
           donationTarget={donationTarget}
-          shelterName={
-            shelterId === '1'
-              ? 'Mestský útulok, Žilina'
-              : shelterId === '2'
-                ? 'Útulok Martin'
-                : shelterId === '3'
-                  ? 'Útulok Trenčín'
-                  : ''
-          }
+          shelterName={selectedShelterName}
           amount={amount}
           firstName={firstName}
           lastName={lastName}
